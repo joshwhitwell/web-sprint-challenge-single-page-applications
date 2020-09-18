@@ -1,12 +1,31 @@
 //Import dependencies
-import React from "react"
+import React, { useState } from "react"
 import { Switch, Route, Link } from 'react-router-dom'
 
 //Import components
 import Form from './Form'
 
+//Form state initial data
+const initialFormValues = {
+  name: '',
+  size: '',
+  sauce: '',
+  pepperoni: false,
+  sausage: false,
+  veggie: false,
+  specialInstructions: '',
+}
+
 //App component
 export default function App() {
+  //Initialize state
+  const [pizza, setPizza] = useState([])
+  const [formValues, setFormValues] = useState(initialFormValues)
+
+  //Form Updater called in Form.js
+  const updateForm = (name, value) => {
+    setFormValues({...formValues, [name]: value})
+  }
 
   return (
     <div>
@@ -18,7 +37,10 @@ export default function App() {
 
       <Switch>
         <Route path='/pizza'>
-          <Form />
+          <Form 
+            updateForm={updateForm}
+            formValues={formValues}
+          />
         </Route>
 
         <Route exact path='/'>

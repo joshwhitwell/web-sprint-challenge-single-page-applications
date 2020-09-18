@@ -2,7 +2,18 @@
 import React from 'react'
 
 //Form component
-export default function Form() {
+export default function Form(props) {
+    //Deconstruct props
+    const { updateForm, formValues } = props
+
+    //onChange handler
+    const onChange = (event) => {
+        const { name, value, type, checked} = event.target
+        const valueToUse = type === 'checkbox' ? checked : value
+        updateForm(name, valueToUse)
+    }
+
+    //Return Form
     return (
         <div>
             <h2>Pizza Form</h2>
@@ -15,9 +26,9 @@ export default function Form() {
                     <input
                             type='text'
                             name='name'
-                            // value={}
+                            value={formValues.name}
                             placeholder='Name'
-                            // onChange={onChange}
+                            onChange={onChange}
                             id='name-input'
                         />
                     </label>
@@ -27,8 +38,8 @@ export default function Form() {
                     <label>
                         Size
                         <select
-                            // onChange={onChange}
-                            // value={values.role}
+                            onChange={onChange}
+                            value={formValues.size}
                             name='size'
                         >
                             <option value=''>---Choose a size---</option>
@@ -46,8 +57,8 @@ export default function Form() {
                             type="radio"
                             name="sauce"
                             value="Original"
-                            // checked={values.civil === 'single'}
-                            // onChange={onChange}
+                            checked={formValues.sauce === 'Original'}
+                            onChange={onChange}
                         />
                     </label>
 
@@ -57,8 +68,8 @@ export default function Form() {
                             type="radio"
                             name="sauce"
                             value="BBQ"
-                            // checked={values.civil === 'single'}
-                            // onChange={onChange}
+                            checked={formValues.sauce === 'BBQ'}
+                            onChange={onChange}
                         />
                     </label>
 
@@ -68,8 +79,8 @@ export default function Form() {
                             type="radio"
                             name="sauce"
                             value="Alfredo"
-                            // checked={values.civil === 'single'}
-                            // onChange={onChange}
+                            checked={formValues.sauce === 'Alfredo'}
+                            onChange={onChange}
                         />
                     </label>
                 </div>
@@ -80,8 +91,8 @@ export default function Form() {
                         <input
                             type="checkbox"
                             name='pepperoni'
-                            // checked={values.hiking}
-                            // onChange={onChange}
+                            checked={formValues.pepperoni}
+                            onChange={onChange}
                             id='pepperoni-input'
                         />
                     </label>
@@ -91,8 +102,8 @@ export default function Form() {
                         <input
                             type="checkbox"
                             name='sausage'
-                            // checked={values.hiking}
-                            // onChange={onChange}
+                            checked={formValues.sausage}
+                            onChange={onChange}
                             id='sausage=input'
                         />
                     </label>
@@ -102,8 +113,8 @@ export default function Form() {
                         <input
                             type="checkbox"
                             name='veggie'
-                            // checked={values.hiking}
-                            // onChange={onChange}
+                            checked={formValues.veggie}
+                            onChange={onChange}
                             id='veggie-input'
                         />
                     </label>
@@ -114,9 +125,9 @@ export default function Form() {
                         Special Instructions
                         <input
                             type='text'
-                            name='special instructions'
-                            // value={formValues.name}
-                            // onChange={onChange}
+                            name='specialInstructions'
+                            value={formValues.specialInstructions}
+                            onChange={onChange}
                             id='special-instructions'
                         />
                     </label>
