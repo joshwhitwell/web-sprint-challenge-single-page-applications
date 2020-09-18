@@ -1,5 +1,5 @@
 //Import dependencies
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Switch, Route, Link } from 'react-router-dom'
 import axios from 'axios'
 import * as yup from 'yup'
@@ -68,6 +68,17 @@ export default function App() {
     postPizza(newPizza)
   }
 
+  //Form validator called on change to formValues state
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => {
+        setDisabled(!valid)
+      })
+      .catch(() => {
+        debugger
+      })
+  }, [formValues])
+
   //Post request called in submitForm in App.js
   const postPizza = (newPizza) => {
     axios.post('https://reqres.in/api/users', newPizza)
@@ -99,6 +110,7 @@ export default function App() {
             formValues={formValues}
             submitForm={submitForm}
             formErrors={formErrors}
+            disabled={disabled}
           />
         </Route>
 

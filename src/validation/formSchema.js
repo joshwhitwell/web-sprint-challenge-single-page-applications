@@ -20,5 +20,7 @@ export default yup.object().shape({
     peppers: yup
         .boolean(),
     onions: yup
-        .boolean()
+        .boolean(),
+    specialInstructions: yup
+        .string()
 })
