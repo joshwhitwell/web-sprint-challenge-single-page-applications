@@ -98,6 +98,7 @@ export default function App() {
             updateForm={updateForm}
             formValues={formValues}
             submitForm={submitForm}
+            formErrors={formErrors}
           />
         </Route>
 

@@ -4,7 +4,7 @@ import React from 'react'
 //Form component
 export default function Form(props) {
     //Deconstruct props
-    const { updateForm, formValues, submitForm } = props
+    const { updateForm, formValues, submitForm, formErrors } = props
 
     //onChange handler
     const onChange = (event) => {
@@ -39,6 +39,8 @@ export default function Form(props) {
                         />
                     </label>
                 </div>
+
+                {formErrors.name ? <p style={{color: 'red'}} id='name-error'>{formErrors.name}</p> : null}
                 
                 <div>
                     <label>
@@ -55,6 +57,8 @@ export default function Form(props) {
                         </select>
                     </label>
                 </div>
+
+                {formErrors.size ? <p style={{color: 'red'}} id='sauce-error'>{formErrors.size}</p> : null}
                 
                 <div>
                     <label>
@@ -90,6 +94,8 @@ export default function Form(props) {
                         />
                     </label>
                 </div>
+
+                {formErrors.sauce ? <p style={{color: 'red'}} id='sauce-error'>{formErrors.sauce}</p> : null}
                 
                 <div>
                     <label>
