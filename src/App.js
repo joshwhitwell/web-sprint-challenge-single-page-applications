@@ -13,7 +13,8 @@ const initialFormValues = {
   sauce: '',
   pepperoni: false,
   sausage: false,
-  veggie: false,
+  peppers: false,
+  onions: false,
   specialInstructions: '',
 }
 
@@ -35,7 +36,7 @@ export default function App() {
       name: formValues.name.trim(),
       size: formValues.size.trim(),
       sauce: formValues.sauce.trim(),
-      toppings: ['pepperoni', 'sausage', 'veggie'].filter(topping => formValues[topping]),
+      toppings: ['pepperoni', 'sausage', 'peppers', 'onions'].filter(topping => formValues[topping]),
     }
     postPizza(newPizza)
   }

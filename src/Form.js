@@ -13,6 +13,7 @@ export default function Form(props) {
         updateForm(name, valueToUse)
     }
 
+    //onSubmit handler
     const onSubmit = (event) => {
         event.preventDefault()
         submitForm()
@@ -109,18 +110,29 @@ export default function Form(props) {
                             name='sausage'
                             checked={formValues.sausage}
                             onChange={onChange}
-                            id='sausage=input'
+                            id='sausage-input'
                         />
                     </label>
 
                     <label>
-                        Veggie
+                        Peppers
                         <input
                             type="checkbox"
-                            name='veggie'
-                            checked={formValues.veggie}
+                            name='peppers'
+                            checked={formValues.peppers}
                             onChange={onChange}
-                            id='veggie-input'
+                            id='peppers-input'
+                        />
+                    </label>
+
+                    <label>
+                        Onions
+                        <input
+                            type="checkbox"
+                            name='onions'
+                            checked={formValues.onions}
+                            onChange={onChange}
+                            id='onions-input'
                         />
                     </label>
                 </div>
