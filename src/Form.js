@@ -4,7 +4,7 @@ import React from 'react'
 //Form component
 export default function Form(props) {
     //Deconstruct props
-    const { updateForm, formValues } = props
+    const { updateForm, formValues, submitForm } = props
 
     //onChange handler
     const onChange = (event) => {
@@ -13,12 +13,17 @@ export default function Form(props) {
         updateForm(name, valueToUse)
     }
 
+    const onSubmit = (event) => {
+        event.preventDefault()
+        submitForm()
+    }
+
     //Return Form
     return (
         <div>
             <h2>Pizza Form</h2>
 
-            <form>
+            <form onSubmit={onSubmit}>
 
                 <div>
                     <label>
