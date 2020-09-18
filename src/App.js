@@ -64,6 +64,7 @@ export default function App() {
       size: formValues.size.trim(),
       sauce: formValues.sauce.trim(),
       toppings: ['pepperoni', 'sausage', 'peppers', 'onions'].filter(topping => formValues[topping]),
+      specialInstructions: formValues.specialInstructions.trim(),
     }
     postPizza(newPizza)
   }
@@ -98,7 +99,7 @@ export default function App() {
   return (
     <div>
       <nav>
-      <h1>Lambda Eats</h1>
+        <h1>Lambda Eats</h1>
         <Link to='/'>Home</Link>
         <Link to='/pizza'>Order</Link>
       </nav>
@@ -115,15 +116,18 @@ export default function App() {
         </Route>
 
         <Route exact path='/'>
+          <div className='home'>
           <h1>Home</h1>
           {
           post ?
-          <div style={{ overflow: 'auto' }}>
-            <h3>Post Response</h3>
-            <pre>{JSON.stringify(post)}</pre>
+          <div className='order-summary'>
+            <h3>Thank you for choosing Domino's Pizza. Your order is on its way.</h3>
+            <h4>Order Summary:</h4>
+            <pre style={{ overflow: 'auto', width: '75%' }}>{JSON.stringify(post)}</pre>
           </div>
           : null
           }
+          </div>
         </Route>
       </Switch>
     </div>
