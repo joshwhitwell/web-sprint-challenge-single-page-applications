@@ -80,6 +80,7 @@ export default function Form(props) {
                             value="BBQ"
                             checked={formValues.sauce === 'BBQ'}
                             onChange={onChange}
+                            id='bbq-select'
                         />
                     </label>
 
