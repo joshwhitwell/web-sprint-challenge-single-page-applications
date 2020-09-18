@@ -2,8 +2,12 @@
 import React from "react"
 import { Switch, Route, Link } from 'react-router-dom'
 
+//Import components
+import Form from './Form'
+
 //App component
 export default function App() {
+
   return (
     <div>
       <nav>
@@ -14,7 +18,7 @@ export default function App() {
 
       <Switch>
         <Route path='/pizza'>
-          <h1>Pizza</h1>
+          <Form />
         </Route>
 
         <Route exact path='/'>
