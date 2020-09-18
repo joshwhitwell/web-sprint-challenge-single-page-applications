@@ -2,9 +2,11 @@
 import React, { useState } from "react"
 import { Switch, Route, Link } from 'react-router-dom'
 import axios from 'axios'
+import * as yup from 'yup'
 
 //Import components
 import Form from './Form'
+import schema from './validation/formSchema'
 
 //Form state initial data
 const initialFormValues = {
@@ -18,16 +20,41 @@ const initialFormValues = {
   specialInstructions: '',
 }
 
+//Error state initial data
+const initialErrorValues = {
+  name: '',
+  size: '',
+  sauce: '',
+}
+
 //App component
 export default function App() {
   //Initialize state
   const [pizza, setPizza] = useState([])
   const [post, setPost] = useState()
   const [formValues, setFormValues] = useState(initialFormValues)
+  const [formErrors, setFormErrors] = useState(initialErrorValues)
+  const [disabled, setDisabled] = useState(true)
 
-  //Form updater called in Form.js
+  //Form updater called onChange in Form.js
   const updateForm = (name, value) => {
+    validateInput(name, value)
     setFormValues({...formValues, [name]: value})
+  }
+
+  //Input validator called in updateForm
+  const validateInput = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        //cleans error state
+        setFormErrors({...formErrors, [name]: ''})
+      })
+      .catch((error) => {
+        //sets form errors from error message returned by validate
+        setFormErrors({...formErrors, [name]: error.errors[0]})
+      })
   }
 
   //Form submitter called in Form.js
